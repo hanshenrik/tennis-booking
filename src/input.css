@@ -10,7 +10,7 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -23,4 +23,4 @@
     min-height: 44px;
     min-width: 44px;
   }
-} 
+}
