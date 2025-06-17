@@ -1,5 +1,10 @@
 const CACHE_NAME = "tennis-booking-v1";
-const urlsToCache = ["/", "/index.html", "/output.css", "/manifest.json"];
+const urlsToCache = [
+  "/tennis-booking/",
+  "/tennis-booking/index.html",
+  "/tennis-booking/output.css",
+  "/tennis-booking/manifest.json"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
