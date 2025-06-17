@@ -2,7 +2,7 @@
   "name": "Tennis Booking",
   "short_name": "Tennis",
   "description": "Book tennis courts and check weather",
-  "start_url": "/",
+  "start_url": "/tennis-booking",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1d4ed8",
