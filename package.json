@@ -7,7 +7,7 @@
     "dev": "npm run build && http-server . -p 3000 -o",
     "dev:watch": "npm run build:watch",
     "build": "tailwindcss -i ./src/input.css -o ./output.css --minify",
-    "build:watch": "tailwindcss -i ./src/input.css -o ./output.css --watch",
+    "build:watch": "tailwindcss -i ./src/input.css -o ./output.css --watch --minify",
     "deploy": "npm run build && echo 'Files ready for GitHub Pages deployment'",
     "format": "prettier --write ."
   },
