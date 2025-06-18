@@ -1,7 +1,7 @@
 {
-  "name": "Tennis Booking",
-  "short_name": "Tennis",
-  "description": "Book tennis courts and check weather",
+  "name": "Svolvær Tennisklubb | Booking",
+  "short_name": "Svolvær Tennisklubb",
+  "description": "Book banen til Svolvær Tennisklubb",
   "start_url": "/tennis-booking",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -31,68 +31,267 @@
     <link rel="manifest" href="manifest.json" />
 
     <link href="./output.css" rel="stylesheet" />
-    <link
-      href="https://assets.calendly.com/assets/external/widget.css"
-      rel="stylesheet"
-    />
+    <script
+      src="https://assets.calendly.com/assets/external/widget.js"
+      type="text/javascript"
+      async
+    ></script>
     <title>Svolvær Tennisklubb | Booking</title>
   </head>
   <body>
     <!-- Sticky Navigation Menu -->
     <nav class="sticky top-0 bg-white shadow-md z-50 border-b border-gray-200">
-      <div class="container mx-auto max-w-screen-lg px-5 md:px-8">
-        <div class="flex items-center space-x-8 py-4">
-          <a
-            href="#booking"
-            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
-            >Book banen</a
-          >
-          <a
-            href="#calendar"
-            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
-            >Kalender</a
-          >
-          <a
-            href="#weather"
-            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
-            >Været</a
-          >
+      <div class="container mx-auto max-w-screen-lg px-4 md:px-8">
+        <div class="flex items-center justify-between py-4 w-full">
+          <div class="flex items-center space-x-8">
+            <a
+              href="#booking"
+              class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+              >Book banen</a
+            >
+            <a
+              href="#calendar"
+              class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+              >Kalender</a
+            >
+            <a
+              href="#weather"
+              class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+              >Været</a
+            >
+          </div>
+
+          <a href="/">
+            <img
+              src="./stk-logo.jpg"
+              alt="Svolvær Tennisklubb"
+              class="w-10 h-10 rounded-full"
+            />
+          </a>
         </div>
       </div>
     </nav>
 
     <div class="container mx-auto max-w-screen-lg">
-      <div class="grid grid-cols-1 px-5 md:px-8 pb-32">
+      <div class="grid grid-cols-1 px-5 md:px-8 pb-32 pt-8">
+        <button
+          onclick="openUserInfoDialog()"
+          class="text-blue-700 hover:text-blue-800 text-sm flex items-center gap-2 transition-colors"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path>
+          </svg>
+          Lagre opplysninger
+        </button>
         <div class="flex flex-col gap-12">
           <div class="flex flex-col gap-6 pt-16" id="booking">
             <h1 class="text-3xl">Book banen</h1>
-            <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-              <a
-                href=""
-                onclick="Calendly.initPopupWidget({url: 'https://calendly.com/stk-booking/1h'});return false;"
-                class="block bg-blue-700 text-white px-6 text-center text-xl py-4 rounded-md hover:bg-blue-800 transition-all duration-300 touch-target"
-                >1 time</a
-              >
-              <a
-                href=""
-                onclick="Calendly.initPopupWidget({url: 'https://calendly.com/stk-booking/2h'});return false;"
-                class="block bg-blue-700 text-white px-6 text-center text-xl py-4 rounded-md hover:bg-blue-800 transition-all duration-300 touch-target"
-                >2 timer</a
-              >
-              <a
-                href=""
-                onclick="Calendly.initPopupWidget({url: 'https://calendly.com/stk-booking/3h'});return false;"
-                class="block bg-blue-700 text-white px-6 text-center text-xl py-4 rounded-md hover:bg-blue-800 transition-all duration-300 touch-target"
-                >3 timer</a
-              >
-            </div> -->
-            <!-- Calendly inline widget begin -->
+
+            <!-- User Info Modal Dialog -->
+            <dialog
+              id="user-info-modal"
+              class="rounded-lg p-0 backdrop:bg-black backdrop:bg-opacity-50"
+            >
+              <div class="bg-white rounded-lg p-6 max-w-md w-full">
+                <div class="flex justify-between items-center mb-4">
+                  <h2 class="text-lg font-semibold">Dine opplysninger</h2>
+                  <button
+                    onclick="closeUserInfoDialog()"
+                    class="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <p class="text-sm text-gray-500 mb-4">
+                  Lagre navn og e-post i nettleseren slik at du slipper å skrive
+                  dem inn hver gang du booker.
+                </p>
+                <div class="space-y-4">
+                  <div>
+                    <label
+                      for="user-name"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Navn</label
+                    >
+                    <input
+                      type="text"
+                      id="user-name"
+                      placeholder="Ditt navn"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="user-email"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >E-post</label
+                    >
+                    <input
+                      type="email"
+                      id="user-email"
+                      placeholder="din.epost@example.com"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div class="flex gap-3 pt-2">
+                    <button
+                      onclick="closeUserInfoDialog()"
+                      class="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition-colors duration-200"
+                    >
+                      Avbryt
+                    </button>
+                    <button
+                      onclick="saveUserData(); closeUserInfoDialog()"
+                      class="flex-1 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition-colors duration-200"
+                    >
+                      Lagre
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </dialog>
+
             <div
-              class="calendly-inline-widget min-h-[700px]"
-              data-url="https://calendly.com/stk-booking?hide_gdpr_banner=1"
+              id="calendly-embed-widget"
+              class="min-h-[700px]"
               style="min-width: 320px; height: 700px"
-              data-resize="true"
             ></div>
+            <script>
+              let calendlyIsInitialized = false;
+
+              function loadUserData() {
+                const name = localStorage.getItem("tennis-booking-name") || "";
+                const email =
+                  localStorage.getItem("tennis-booking-email") || "";
+
+                document.getElementById("user-name").value = name;
+                document.getElementById("user-email").value = email;
+
+                return { name, email };
+              }
+
+              function saveUserData() {
+                const name = document.getElementById("user-name").value.trim();
+                const email = document
+                  .getElementById("user-email")
+                  .value.trim();
+
+                if (name) localStorage.setItem("tennis-booking-name", name);
+                if (email) localStorage.setItem("tennis-booking-email", email);
+
+                // Reinitialize Calendly with new user data
+                reinitializeCalendly();
+
+                return { name, email };
+              }
+
+              function reinitializeCalendly() {
+                const widgetElement = document.getElementById(
+                  "calendly-embed-widget",
+                );
+
+                if (!widgetElement) {
+                  console.error("Widget element not found");
+                  return;
+                }
+
+                // Clear the widget container
+                widgetElement.innerHTML = "";
+
+                // Reset initialization flag
+                calendlyIsInitialized = false;
+
+                // Reinitialize with new data
+                initCalendly();
+              }
+
+              function openUserInfoDialog() {
+                const modal = document.getElementById("user-info-modal");
+                modal.showModal();
+
+                // Load current data into form
+                loadUserData();
+
+                // Focus on first input
+                document.getElementById("user-name").focus();
+              }
+
+              function closeUserInfoDialog() {
+                const modal = document.getElementById("user-info-modal");
+                modal.close();
+              }
+
+              // Close modal when clicking outside (dialog handles this automatically)
+              // Close modal with Escape key (dialog handles this automatically)
+
+              function initCalendly() {
+                // Prevent double initialization
+                if (calendlyIsInitialized) {
+                  return;
+                }
+
+                const userData = loadUserData();
+                const widgetElement = document.getElementById(
+                  "calendly-embed-widget",
+                );
+
+                if (!widgetElement) {
+                  console.error("Widget element not found");
+                  return;
+                }
+
+                try {
+                  Calendly.initInlineWidget({
+                    url: "https://calendly.com/stk-booking",
+                    parentElement: widgetElement,
+                    minWidth: "320px",
+                    height: "700px",
+                    hideGdprBanner: true,
+                    resize: true,
+                    button_text: "Book banen",
+                    buttonText: "Book banen nå!",
+                    text: "Book nå!",
+                    prefill: {
+                      name: userData.name || "",
+                      email: userData.email || "",
+                    },
+                  });
+
+                  calendlyIsInitialized = true;
+                  console.log("Calendly initialized successfully");
+                } catch (error) {
+                  console.error("Error initializing Calendly:", error);
+                }
+              }
+
+              // Wait for DOM to be ready
+              document.addEventListener("DOMContentLoaded", function () {
+                // Load user data first
+                loadUserData();
+
+                // Initialize Calendly when ready
+                if (typeof Calendly !== "undefined") {
+                  initCalendly();
+                } else {
+                  const checkCalendly = setInterval(() => {
+                    if (typeof Calendly !== "undefined") {
+                      clearInterval(checkCalendly);
+                      initCalendly();
+                    }
+                  }, 100);
+                }
+              });
+            </script>
           </div>
           <div class="flex flex-col gap-6 pt-16" id="calendar">
             <h1 class="text-3xl">Kalender</h1>
@@ -123,11 +322,13 @@
           </div>
         </div>
       </div>
+      <p class="text-center text-sm text-gray-500">
+        Ved å bruke denne nettsiden godtar du at Calendly kan lagre cookies i
+        nettleseren din. Dersom du ønsker å avslå dette, må du gå direkte til
+        <a href="https://calendly.com/stk-booking" class="text-blue-700"
+          >Calendly</a
+        >.
+      </p>
     </div>
-    <script
-      type="text/javascript"
-      src="https://assets.calendly.com/assets/external/widget.js"
-      async
-    ></script>
   </body>
 </html>
