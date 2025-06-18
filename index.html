@@ -35,15 +35,38 @@
       href="https://assets.calendly.com/assets/external/widget.css"
       rel="stylesheet"
     />
-    <title>Tennis Booking</title>
+    <title>Svolvær Tennisklubb | Booking</title>
   </head>
   <body>
+    <!-- Sticky Navigation Menu -->
+    <nav class="sticky top-0 bg-white shadow-md z-50 border-b border-gray-200">
+      <div class="container mx-auto max-w-screen-lg px-5 md:px-8">
+        <div class="flex items-center space-x-8 py-4">
+          <a
+            href="#booking"
+            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+            >Book banen</a
+          >
+          <a
+            href="#calendar"
+            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+            >Kalender</a
+          >
+          <a
+            href="#weather"
+            class="text-gray-700 hover:text-blue-700 transition-colors duration-200 font-medium"
+            >Været</a
+          >
+        </div>
+      </div>
+    </nav>
+
     <div class="container mx-auto max-w-screen-lg">
-      <div class="grid grid-cols-1 px-4 pt-12 pb-32">
+      <div class="grid grid-cols-1 px-5 md:px-8 pb-32">
         <div class="flex flex-col gap-12">
-          <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-6 pt-16" id="booking">
             <h1 class="text-3xl">Book banen</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
               <a
                 href=""
                 onclick="Calendly.initPopupWidget({url: 'https://calendly.com/stk-booking/1h'});return false;"
@@ -62,9 +85,16 @@
                 class="block bg-blue-700 text-white px-6 text-center text-xl py-4 rounded-md hover:bg-blue-800 transition-all duration-300 touch-target"
                 >3 timer</a
               >
-            </div>
+            </div> -->
+            <!-- Calendly inline widget begin -->
+            <div
+              class="calendly-inline-widget min-h-[700px]"
+              data-url="https://calendly.com/stk-booking?hide_gdpr_banner=1"
+              style="min-width: 320px; height: 700px"
+              data-resize="true"
+            ></div>
           </div>
-          <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-6 pt-16" id="calendar">
             <h1 class="text-3xl">Kalender</h1>
             <iframe
               src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FOslo&mode=WEEK&hl=no&showTz=0&showCalendars=0&showPrint=0&src=NzhkNzU4Y2M1Mjg2ODQ3YWYzYTQxNGQ4ODkyYmJkNjZkZWE1ODk4YTg1NDczZWI1Y2IwNzBmMmNkMGNmNzVhOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23f4511e"
@@ -76,7 +106,7 @@
               scrolling="no"
             ></iframe>
           </div>
-          <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-6 pt-16" id="weather">
             <h1 class="text-3xl">Hvordan er været?</h1>
             <iframe
               src="https://www.yr.no/nb/innhold/1-276917/table.html"
@@ -85,7 +115,7 @@
               class="min-h-[520px] w-full"
             ></iframe>
             <a
-              href="https://www.yr.no/nb/v%C3%AArvarsel/dagleg-tabell/1-276917/Noreg/Nordland/V%C3%A5gan/Svolv%C3%A6r"
+              href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-276917/Norge/Nordland/V%C3%A5gan/Svolv%C3%A6r"
               class="text-blue-700 border-b border-blue-700 w-fit ml-auto"
               target="_blank"
               >Gå til yr.no</a
@@ -99,21 +129,5 @@
       src="https://assets.calendly.com/assets/external/widget.js"
       async
     ></script>
-
-    <!-- Service Worker Registration -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/tennis-booking/sw.js")
-            .then((registration) => {
-              console.log("SW registered: ", registration);
-            })
-            .catch((registrationError) => {
-              console.log("SW registration failed: ", registrationError);
-            });
-        });
-      }
-    </script>
   </body>
 </html>
