@@ -7,6 +7,31 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
 
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Clear Service Workers and Force Fresh Load -->
+    <script>
+      // Clear any existing service worker registrations
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+          }
+        });
+      }
+      
+      // Force fresh load if page is cached
+      window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+          // Page was loaded from cache, force reload
+          window.location.reload();
+        }
+      });
+    </script>
+
     <!-- PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -30,7 +55,7 @@
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json" />
 
-    <link href="./output.css" rel="stylesheet" />
+    <link href="./output.css?v=3" rel="stylesheet" />
     <script
       src="https://assets.calendly.com/assets/external/widget.js"
       type="text/javascript"
